@@ -1,8 +1,8 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import List
 
-app = FastAPI()
+router = APIRouter()
 
 class User(BaseModel):
     id: int
@@ -16,18 +16,18 @@ usuarios = [
     User(id=2, nombre="Ana Gomez", email="ana.gomez@example.com"),
 ]
 
-@app.get("/users")
+@router.get("/users")
 def obtener_usuarios():
     return usuarios
 
-@app.get("/user/{user_id}")
+@router.get("/user/{user_id}")
 def obtener_usuario(user_id: int):
     usuario =  list(filter (lambda user: user.id == user_id, usuarios))
     if usuario is None:
         raise HTTPException(status_code=404, detail="Usuario no encontrado")
     return usuario[0]
 
-@app.post("/user", status_code=201)
+@router.post("/user", status_code=201)
 async def agregar_usuario(user: User):
    
     
@@ -35,7 +35,7 @@ async def agregar_usuario(user: User):
     return {"mensaje": "usuario agregado"}
 
 
-@app.put("/user/")
+@router.put("/user/")
 async def update_user(user: User):
     found = False
 
@@ -49,7 +49,7 @@ async def update_user(user: User):
         return {"mensaje": "no se actualizó el usuario"}
     
     
-@app.delete("/user/{id}")
+@router.delete("/user/{id}")
 async def delete_user(id: int): 
     for index, saved_user in enumerate(usuarios): 
         if saved_user.id == id:

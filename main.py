@@ -1,8 +1,15 @@
 from fastapi import FastAPI, HTTPException
+
+from router import products,users
+
 from pydantic import BaseModel
 from typing import List
 
 app = FastAPI()
+
+#Routers
+app.include_router(products.router)
+app.include_router(users.router)
 
 class User(BaseModel):
     id: int
