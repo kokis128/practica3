@@ -3,15 +3,19 @@ from fastapi import FastAPI, HTTPException
 
 
 from pydantic import BaseModel
-from typing import List
+from db.client import db_client
 
-from router import products,users
+from router import products,users,basic_auth_users, users_db
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
 
 #Routers
 app.include_router(products.router)
 app.include_router(users.router)
+app.mount("/static", StaticFiles(directory="static"), name="static")
+app.include_router(basic_auth_users.router)
+app.include_router(users_db.router)
 
 
 class User(BaseModel):
@@ -73,3 +77,5 @@ def search_user(id: int):
         return list(users)[0]
     except :
         return {"error": "User not found   "}
+    
+    
