@@ -6,7 +6,7 @@ from pydantic import BaseModel
 from db.client import db_client
 
 from router import products,users,basic_auth_users, users_db
-from fastapi.staticfiles import StaticFiles
+from fastapi.staticfiles import StaticFiles # type: ignore
 
 app = FastAPI()
 
