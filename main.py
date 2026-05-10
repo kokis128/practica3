@@ -49,7 +49,7 @@ async def agregar_usuario(user: User):
     return {"mensaje": "usuario agregado"}
 
 
-@app.put("/user/")
+@app.put("/user")
 async def update_user(user: User):
     found = False
 
