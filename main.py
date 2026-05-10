@@ -8,6 +8,9 @@ from db.client import db_client
 from router import products,users,basic_auth_users, users_db
 from fastapi.staticfiles import StaticFiles # type: ignore
 
+from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
+
 app = FastAPI()
 
 #Routers
@@ -34,9 +37,23 @@ usuarios = [
 
 
 
-@app.get("/")
-def read_root():
-    return {"message": "Bienvenido a la API del taller"}
+
+
+app = FastAPI()
+
+@app.get("/", response_class=HTMLResponse)
+def home():
+    return """
+    <html>
+        <head>
+            <title>API Taller</title>
+        </head>
+        <body>
+            <h1>Bienvenido a la API del Taller</h1>
+            <p>La API está funcionando correctamente.</p>
+        </body>
+    </html>
+    """
 
 
 
