@@ -30,6 +30,16 @@ usuarios = [
     User(id=2, nombre="Ana Gomez", email="ana.gomez@example.com"),
 ]
 
+
+
+
+
+@app.get("/")
+def read_root():
+    return {"message": "Bienvenido a la API del taller"}
+
+
+
 @app.get("/users")
 def obtener_usuarios():
     return usuarios
