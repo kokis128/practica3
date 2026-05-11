@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 
+from fastapi import Request
 
 
 from pydantic import BaseModel
@@ -8,8 +9,8 @@ from db.client import db_client
 from router import products,users,basic_auth_users, users_db
 from fastapi.staticfiles import StaticFiles # type: ignore
 
-from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
 
@@ -39,21 +40,14 @@ usuarios = [
 
 
 
-app = FastAPI()
 
-@app.get("/", response_class=HTMLResponse)
-def home():
-    return """
-    <html>
-        <head>
-            <title>API Taller</title>
-        </head>
-        <body>
-            <h1>Bienvenido a la API del Taller</h1>
-            <p>La API está funcionando correctamente.</p>
-        </body>
-    </html>
-    """
+
+@app.get("/")
+def home(request: Request):
+    return templates.TemplateResponse(
+        "index.html",
+        {"request": request, "titulo": "API Taller"}
+    )
 
 
 

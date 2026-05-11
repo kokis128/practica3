@@ -4,3 +4,4 @@ passlib
 bcrypt
 pymongo
 uvicorn
+jinja2
