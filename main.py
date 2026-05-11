@@ -43,7 +43,7 @@ usuarios = [
 
 @app.get("/")
 def home():
-    return templates.TemplateResponse("index.html", {"request": request}
+    return {"message": "Bienvenido a la API de FastAPI!"}
     )
 
 
