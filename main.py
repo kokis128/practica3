@@ -44,7 +44,7 @@ usuarios = [
 @app.get("/")
 def home():
     return {"message": "Bienvenido a la API de FastAPI!"}
-    )
+
 
 
 
