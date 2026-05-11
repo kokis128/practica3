@@ -1,7 +1,4 @@
-from fastapi import FastAPI, HTTPException
-
-from fastapi import Request
-
+from fastapi import FastAPI, HTTPException,Request
 
 from pydantic import BaseModel
 from db.client import db_client
@@ -13,6 +10,8 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
+
+templates = Jinja2Templates(directory="templates")
 
 #Routers
 app.include_router(products.router)
