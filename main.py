@@ -42,7 +42,7 @@ usuarios = [
 
 
 @app.get("/", response_class=HTMLResponse)
-async def home(request: Request):
+async def home():
     return templates.TemplateResponse(
         "index.html",
         {
