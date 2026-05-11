@@ -43,9 +43,7 @@ usuarios = [
 
 @app.get("/")
 def home(request: Request):
-    return templates.TemplateResponse(
-        "index.html",
-        {"request": request, "titulo": "API Taller"}
+    return templates.TemplateResponse("index.html", {"request": request}
     )
 
 
