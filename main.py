@@ -42,7 +42,7 @@ usuarios = [
 
 
 @app.get("/")
-def home(request: Request):
+def home():
     return templates.TemplateResponse("index.html", {"request": request}
     )
 
